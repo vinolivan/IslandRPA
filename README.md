@@ -1,5 +1,5 @@
 
-# Text Filter Library
+# island-customrpa
 
 A modular JavaScript library for filtering DOM elements, performing actions, logging, and utilities.
 
@@ -14,19 +14,19 @@ A modular JavaScript library for filtering DOM elements, performing actions, log
 
 ### Via npm
 ```bash
-npm install text-filter-library
+npm install island-customrpa
 ```
 
 ### Via CDN
 ```html
-<script src="https://cdn.jsdelivr.net/npm/text-filter-library/dist/library.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/island-customrpa/dist/library.min.js"></script>
 ```
 
 ## Usage
 
 ### Filtering Elements
 ```javascript
-import Library from 'text-filter-library';
+import Library from 'island-customrpa';
 
 const matches = Library.filterByText('Example');
 Library.removeElements(() => matches);
