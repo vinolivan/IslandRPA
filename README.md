@@ -1,14 +1,19 @@
+# Island CustomRPA
 
-# island-customrpa
+A modular JavaScript library designed to simplify DOM manipulation, event handling, and auditing tasks. This library is particularly useful for developers looking to automate repetitive browser tasks with precision and ease.
 
-A modular JavaScript library for filtering DOM elements, performing actions, logging, and utilities.
+---
 
 ## Features
-- Filter elements by text, regex, or attributes.
-- Remove or modify elements based on filter results.
-- Add custom event listeners and monitor events globally.
-- Maintain audit logs for operations.
-- Utility functions like debounce and throttle.
+
+### Core Functionalities
+- **Filtering DOM Elements**: Filter elements by text, regex, or attributes for precise targeting.
+- **Element Modification**: Remove or modify elements based on filter results.
+- **Event Handling**: Add custom event listeners and monitor events globally.
+- **Audit Logging**: Maintain detailed logs for all operations to track actions.
+
+
+---
 
 ## Installation
 
@@ -19,25 +24,32 @@ npm install island-customrpa
 
 ### Via CDN
 ```html
-  <script src="https://cdn.jsdelivr.net/gh/vinolivan/IslandRPA@main/dist/library.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/island-customrpa/dist/bundle.min.js"></script>
 ```
 
-## Usage
 
-### Filtering Elements
-```javascript
-import Library from 'island-customrpa';
+## Project Structure
 
-const matches = Library.filterByText('Example');
-Library.removeElements(() => matches);
+```
+/island-customrpa
+├── .git                 # Git version control directory
+├── .gitignore           # Ignored files for Git
+├── .vscode              # VS Code configuration files
+├── dist                 # Compiled output directory
+├── node_modules         # Dependencies installed via npm
+├── package-lock.json    # Detailed dependency tree
+├── package.json         # Project metadata and scripts
+├── README.md            # Project documentation
+├── rollup.config.js     # Rollup configuration file
+├── src                  # Source code directory
 ```
 
-### Event Listeners
-```javascript
-Library.addCustomEventListener('click', 'button', (event, el) => {
-  console.log('Button clicked:', el);
-});
-```
+### Key Files
+- `src/index.js`: Entry point for the library.
+- `rollup.config.js`: Configuration for bundling the library.
+
+---
 
 ## License
-MIT
+
+This project is licensed under the MIT License. See the LICENSE file for details.
