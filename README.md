@@ -19,7 +19,7 @@ npm install island-customrpa
 
 ### Via CDN
 ```html
-<script src="https://cdn.jsdelivr.net/npm/island-customrpa/dist/library.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/vinolivan/IslandRPA@main/dist/library.min.js"></script>
 ```
 
 ## Usage
