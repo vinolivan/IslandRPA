@@ -1,0 +1,15 @@
+{
+  "name": "island-customrpa",
+  "version": "1.0.0",
+  "description": "A modular JavaScript library for filtering, actions, audit logging, and utilities.",
+  "main": "dist/library.min.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "Livan Nadar",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^3.0.0"
+  }
+}
