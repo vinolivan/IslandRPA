@@ -1,106 +1,108 @@
 var Library = (function () {
   'use strict';
 
-  // File: src/filter.js
+  // File: filter.js
 
+  // Define reusable valid tags for row-level or block-level elements
+  const validRowTags = ['TR', 'LI', 'DIV', 'SECTION'];
 
-  // 2. Filter by Partial Text
   const filterByPartialText = (text, caseSensitive = false) => {
     const elements = Array.from(document.querySelectorAll('*'));
     return elements.filter((el) => {
       const content = el.textContent || '';
-      return caseSensitive ? content.includes(text) : content.toLowerCase().includes(text.toLowerCase());
-    });
+      if (caseSensitive) {
+        return content.includes(text);
+      } else {
+        return content.toLowerCase().includes(text.toLowerCase());
+      }
+    }).filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 3. Filter by Regular Expression
   const filterByRegex = (pattern) => {
     const regex = new RegExp(pattern);
     const elements = Array.from(document.querySelectorAll('*'));
-    return elements.filter((el) => regex.test(el.textContent || ''));
+    return elements.filter((el) => regex.test(el.textContent || ''))
+      .filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 4. Filter by Tag Name
   const filterByTagName = (tagName) => {
     return Array.from(document.querySelectorAll(tagName));
   };
 
-  // 5. Filter by Attribute Value
   const filterByAttributeValue = (attribute, value) => {
     const elements = Array.from(document.querySelectorAll(`[${attribute}]`));
-    return elements.filter((el) => el.getAttribute(attribute) === value);
+    return elements.filter((el) => el.getAttribute(attribute) === value)
+      .filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 6. Filter by Class Name
   const filterByClassName = (className) => {
-    return Array.from(document.querySelectorAll(`.${className}`));
+    const elements = Array.from(document.querySelectorAll(`.${className}`));
+    return elements.filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 7. Filter by Element Visibility
   const filterByVisibility = () => {
     const elements = Array.from(document.querySelectorAll('*'));
     return elements.filter((el) => {
       const rect = el.getBoundingClientRect();
       return rect.width > 0 && rect.height > 0;
-    });
+    }).filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 8. Filter by Element with Children
   const filterByHasChildren = () => {
     const elements = Array.from(document.querySelectorAll('*'));
-    return elements.filter((el) => el.children.length > 0);
+    return elements.filter((el) => el.children.length > 0)
+      .filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 9. Filter by Elements with No Children
   const filterByNoChildren = () => {
     const elements = Array.from(document.querySelectorAll('*'));
-    return elements.filter((el) => el.children.length === 0);
+    return elements.filter((el) => el.children.length === 0)
+      .filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 10. Filter by Text Length
   const filterByTextLength = (minLength = 0, maxLength = Infinity) => {
     const elements = Array.from(document.querySelectorAll('*'));
     return elements.filter((el) => {
       const content = el.textContent || '';
       return content.length >= minLength && content.length <= maxLength;
-    });
+    }).filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 11. Filter by Custom Function
   const filterByCustomFn = (filterFn) => {
     const elements = Array.from(document.querySelectorAll('*'));
-    return elements.filter(filterFn);
+    return elements.filter(filterFn)
+      .filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 12. Filter by Parent Element
   const filterByParent = (parentSelector) => {
     const parent = document.querySelector(parentSelector);
     if (!parent) return [];
-    return Array.from(parent.children);
+    return Array.from(parent.children).filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 13. Filter by Nested Content
   const filterByNestedContent = (selector, text) => {
     const elements = Array.from(document.querySelectorAll(selector));
-    return elements.filter((el) => el.querySelector('*')?.textContent.includes(text));
+    return elements.filter((el) =>
+      el.querySelector('*')?.textContent.includes(text)
+    ).filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 14. Filter by Style
   const filterByStyle = (styleProp, value) => {
     const elements = Array.from(document.querySelectorAll('*'));
-    return elements.filter((el) => getComputedStyle(el)[styleProp] === value);
+    return elements.filter((el) => getComputedStyle(el)[styleProp] === value)
+      .filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 15. Filter by Dataset Attributes
   const filterByDataset = (dataKey, value) => {
     const elements = Array.from(document.querySelectorAll('*'));
-    return elements.filter((el) => el.dataset[dataKey] === value);
+    return elements.filter((el) => el.dataset[dataKey] === value)
+      .filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
-  // 16. Filter by Specific Text in Attribute
   const filterByTextInAttribute = (attribute, searchText) => {
     const elements = Array.from(document.querySelectorAll(`[${attribute}]`));
-    return elements.filter((el) => el.getAttribute(attribute)?.includes(searchText));
+    return elements.filter((el) => el.getAttribute(attribute).includes(searchText))
+      .filter((el) => validRowTags.includes(el.tagName) || el.closest('*[role="row"]'));
   };
 
   // File: actions.js
